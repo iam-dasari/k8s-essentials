@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-ex
+spec:
+  selector:
+    app: roboshop
+  ports:
+    - protocol: TCP
+      port: 80 #belongs to service
+      targetPort: http-web-svc #belongs to container
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod
+  labels:
+    app: roboshop
+spec:
+  containers:
+  - name: nginx-pod
+    image: nginx
+    ports:
+    - containerPort: 80
