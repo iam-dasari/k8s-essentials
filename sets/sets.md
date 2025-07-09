@@ -13,3 +13,4 @@ ReplicaSet
   - Pod is subset of ReplicaSet and ReplicaSet is subset of Deployment
   - kubectl get deployments
   - we can update applications to next version in zero downtime
+  - When a pod is deleted immediately kubernetes will create another pod to make sure that no of replicas matched
