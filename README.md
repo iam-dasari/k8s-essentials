@@ -20,3 +20,7 @@ Namespaces
  - Namespaces are isolated project space for kubernetes resources
  - kubectl get namespaces or kubectl get ns
  - kubectl apply -f 01-namespace.yaml
+ - kubectl create vs apply --> When resource doesn't exist use create otherwise you will get error.
+   Where as apply it can be used at any time.
+ - kubectl delete -f 01-namespace.yaml 
+ - kubectl api-resources
