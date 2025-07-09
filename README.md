@@ -91,5 +91,16 @@ imagePullPolicy
 Secrets
 --------
  - Secrets are used for usernames and passwords, tokens ect.,
-   echo "Pavan" | base64
-   echo "UGF2YW4K" | base64 --decode
+   - echo "Pavan" | base64
+   - echo "UGF2YW4K" | base64 --decode
+
+Services
+----------------
+ - Services are used to expose applications to outside world
+ - To balance the load - deployment & replicaset
+  1. ClusterIP - Within cluster
+  2. NodePort - For Dev Environment
+  3. LoadBalancer - Used for cloud
+ - kubectl get service or kubectl get svc
+ - Login to one pod and use curl <ip-address> or curl <name-of-service> 
+ - When we use name-of-service it is called service mesh as ip addresses keep on changing
