@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: catalogue
+  namespace: roboshop
+  labels: # these labels are replica set labels, every k8 resource can have labels.
+    app: catalogue
+    tier: app
+    project: roboshop
+spec:
+  # modify replicas according to your case
+  replicas: 1
+  selector:
+    matchLabels: # these labels should match with pod labels
+      app: catalogue
+      tier: app
+      project: roboshop
+  template: # this one is nothing but pod definition.
+    metadata:
+      labels: #these are the pod labels.
+        app: catalogue
+        tier: app
+        project: roboshop
+    spec:
+      containers:
+      - name: catalogue
+        image: dasaridevops/catalogue:1.0.0
+        envFrom:
+        - configMapRef:
+            name: catalogue
+      imagePullSecrets:
+        - name: my-registry-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: catalogue
+  namespace: roboshop
+spec:
+  type: ClusterIP
+  selector:
+    app: catalogue
+    tier: app
+    project: roboshop
+  ports:
+    - name: catalogue-port
+      protocol: TCP
+      port: 8080 #belongs to service
+      targetPort: 8080 #belongs to container
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: catalogue
+  namespace: roboshop
+data:
+  MONGO: "true" #Keep true in double quotes
+  MONGO_URL: "mongodb://mongodb:27017/catalogue" #protocol://servicename:service-port/schema
+
+  
