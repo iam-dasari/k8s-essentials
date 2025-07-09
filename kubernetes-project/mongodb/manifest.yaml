@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongodb
+  labels: # these labels are replica set labels, every k8 resource can have labels.
+    app: mongodb
+    tier: db
+    project: roboshop
+spec:
+  # modify replicas according to your case
+  replicas: 1
+  selector:
+    matchLabels: # these labels should match with pod labels
+      app: mongodb
+      tier: db
+      project: roboshop
+  template: # this one is nothing but pod definition.
+    metadata:
+      labels: #these are the pod labels.
+        app: mongodb
+        tier: db
+        project: roboshop
+    spec:
+      containers:
+      - name: mongodb
+        image: dasaridevops/mongodb:1.0.0
