@@ -18,5 +18,5 @@ Docker Swarm vs Kubernetes
 Namespaces
 ------------
  - Namespaces are isolated project space for kubernetes resources
- kubectl get namespaces or kubectl get ns
- kubectl apply -f 01-namespace.yaml
+ - kubectl get namespaces or kubectl get ns
+ - kubectl apply -f 01-namespace.yaml
