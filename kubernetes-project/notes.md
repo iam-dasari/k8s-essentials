@@ -5,9 +5,8 @@ Flow
  3. Push to container registry
  4. Run manifest files
 
- Steps
+ mongodb
  -----------
-  mongodb
   - Create namespace (kubectl apply -f 01-namespace.yaml)
   - verify namespace is created or not (kubectl get ns)
   - Build image (docker build -t dasaridevops/mongodb:1.0.0 .)
