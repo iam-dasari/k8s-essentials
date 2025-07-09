@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: frontend
+  labels: # these are replicaset labels, every k8 resource can have labels
+    app: roboshop
+    tier: frontend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      tier: frontend #these labels should match with pod labels
+  template: # pod definition
+    metadata:
+      tier: frontend
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
