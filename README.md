@@ -102,5 +102,5 @@ Services
   2. NodePort - For Dev Environment
   3. LoadBalancer - Used for cloud
  - kubectl get service or kubectl get svc
- - Login to one pod and use curl <ip-address> or curl <name-of-service> 
+ - Login to one pod and use curl ip-address or curl name-of-service 
  - When we use name-of-service it is called service mesh as ip addresses keep on changing
