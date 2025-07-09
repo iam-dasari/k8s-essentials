@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mongodb
+  namespace: roboshop
   labels: # these labels are replica set labels, every k8 resource can have labels.
     app: mongodb
     tier: db
@@ -24,3 +25,23 @@ spec:
       containers:
       - name: mongodb
         image: dasaridevops/mongodb:1.0.0
+      imagePullSecrets:
+        - name: my-registry-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongodb
+  namespace: roboshop
+spec:
+  type: ClusterIP
+  selector:
+    app: mongodb
+    tier: db
+    project: roboshop
+  ports:
+    - name: mongodb-port
+      protocol: TCP
+      port: 27017 #belongs to service
+      targetPort: 27017 #belongs to container
+  
