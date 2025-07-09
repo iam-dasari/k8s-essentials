@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: lb-ex
+spec:
+  selector:
+    app: lb
+  ports:
+    - protocol: TCP
+      port: 80 #belongs to service
+      targetPort: http-web-svc #belongs to container
+  type: LoadBalancer # only work for cloud k8s clusters
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: lb-pod
+  labels:
+    app: lb
+spec:
+  containers:
+  - name: lb-pod
+    image: nginx
+    ports:
+    - containerPort: 80
